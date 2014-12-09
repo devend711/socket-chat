@@ -3,6 +3,7 @@ window.onload = function() {
     console.log('loaded!');
  
     var messages = [];
+    var color_codes = {}; // a dictionary of string -> color associations
     var socket = io.connect('http://localhost:3700');
     var field = $('#text-box');
     var sendButton = $('input#send-button');
@@ -14,12 +15,21 @@ window.onload = function() {
             console.log('socket received message: ' + data.message)
             console.log('there are now ' + messages.length + ' messages')
             messages.push(data.message);
-            content.append(data.username + ': ' + data.message + '<br/>');
+            content.append(
+                '<span class="username" style="color: ' + stringToHex(data.username) + '">'
+                + data.username  + ': </span>'
+                + data.message + '<br/>'
+            );
             $("#content").scrollTop(content[0].scrollHeight);
         } else {
             console.log('error!: ', data);
         }
     });
+
+
+    stringToHex = function(str) {
+        return (str in color_codes) ? color_codes[str] : (color_codes[str] = '#'+ ('000000' + (Math.random()*0xFFFFFF<<0).toString(16)).slice(-6));
+    }
  
     sendMessage = function() {
         var text = field.val();

@@ -10,3 +10,7 @@
 	padding: 0.5em;
 	text-align: left;
 }
+
+#chat-message-container .username {
+	color: #999;
+}
