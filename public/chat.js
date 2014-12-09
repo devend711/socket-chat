@@ -17,7 +17,9 @@ window.onload = function() {
             messages.push(data.message);
             content.append(
                 '<span class="username" style="color: ' + stringToHex(data.username) + '">'
-                + data.username  + ': </span>'
+                + data.username  
+                + ' (' + currentTimeString() + ')'
+                + ': </span>'
                 + data.message + '<br/>'
             );
             $("#content").scrollTop(content[0].scrollHeight);
@@ -29,6 +31,11 @@ window.onload = function() {
 
     stringToHex = function(str) {
         return (str in color_codes) ? color_codes[str] : (color_codes[str] = '#'+ ('000000' + (Math.random()*0xFFFFFF<<0).toString(16)).slice(-6));
+    }
+
+    currentTimeString = function() {
+        var dt = new Date();
+        return '@ ' + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     }
  
     sendMessage = function() {
