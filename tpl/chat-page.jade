@@ -10,11 +10,11 @@ html
 	body
 		.container
 			.jumbotron
+				h1#title SocketChat!
 				#chat-message-container()
 				.controls
 					#name-container
-						| Username: 
-						input(style='width:350px;', id="name")
+						input(style='width:350px;', id="name", placeholder="Username")
 					#text-container
-						input(style='width:350px;', id="text-box")
-						input(type='button', value='Send', id="send-button")
+						input(style='width:350px;', id="text-box", placeholder="Message")
+						input(type='button', value=' >> ', id="send-button")

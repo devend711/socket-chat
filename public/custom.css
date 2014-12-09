@@ -1,6 +1,24 @@
+input:focus {
+	outline:none;
+}
+
+input[type="button"] {
+	background-color: transparent;
+	border: 1px solid #ccc;
+}
+
+input[type="button"]:hover {
+	background-color: transparent;
+	border: 1px solid #9A49EB;
+}
+
 .jumbotron {
 	background-color: transparent;
 	text-align: center;
+}
+
+.jumbotron h1#title {
+	color: #9A49EB;
 }
 
 #chat-message-container {
@@ -9,6 +27,25 @@
 	margin-bottom: 1em;
 	padding: 0.5em;
 	text-align: left;
+	overflow: hidden;
+}
+
+.controls > div {
+	float: left;
+	margin-bottom: 1em;
+	clear: both;
+}
+
+.controls input {
+	padding: 0.5em;
+}
+
+.controls #send-button {
+	margin-left: 1em;	
+}
+
+#chat-message-container .message {
+	margin-bottom: .5em;
 }
 
 #chat-message-container .content {

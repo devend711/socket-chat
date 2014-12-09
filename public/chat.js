@@ -28,7 +28,7 @@ window.onload = function() {
                 + '</div>'
                 + '</div>'
             );
-            $("#content").scrollTop(content[0].scrollHeight);
+            content.scrollTop(content[0].scrollHeight);
         } else {
             console.log('error!: ', data);
         }
@@ -36,7 +36,11 @@ window.onload = function() {
 
 
     stringToHex = function(str) {
-        return (str in color_codes) ? color_codes[str] : (color_codes[str] = '#'+ ('000000' + (Math.random()*0xFFFFFF<<0).toString(16)).slice(-6));
+        return (str in color_codes) ? color_codes[str] : (color_codes[str] = randomHex());
+    }
+
+    randomHex = function() {
+        return '#'+ (Math.random()*0xFFFFFF<<0).toString(16).slice(-6);
     }
 
     currentTimeString = function() {
