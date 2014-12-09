@@ -11,6 +11,22 @@
 	text-align: left;
 }
 
-#chat-message-container .username {
-	color: #999;
+#chat-message-container .content {
+	overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+#chat-message-container .timestamp {
+	color: #bbb;
+	float: right;
+}
+
+#chat-message-container .username:hover {
+	color: inherit !important;
+}
+
+#chat-message-container .timestamp:hover {
+	color: inherit;
+	float: right;
 }

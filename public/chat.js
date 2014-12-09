@@ -16,11 +16,17 @@ window.onload = function() {
             console.log('there are now ' + messages.length + ' messages')
             messages.push(data.message);
             content.append(
-                '<span class="username" style="color: ' + stringToHex(data.username) + '">'
-                + data.username  
-                + ' (' + currentTimeString() + ')'
-                + ': </span>'
-                + data.message + '<br/>'
+                '<div class="message row">'
+                + '<div class="col-md-10 content">'
+                    + '<span class="username" style="color: ' + stringToHex(data.username) + '">'
+                    + data.username 
+                    + ': </span>'
+                    + data.message 
+                + '</div>'
+                + '<div class=col-md-2>'
+                    + '<span class="timestamp">' + currentTimeString()
+                + '</div>'
+                + '</div>'
             );
             $("#content").scrollTop(content[0].scrollHeight);
         } else {
