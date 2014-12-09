@@ -12,8 +12,9 @@ html
 			div.jumbotron
 				#chat-message-container()
 				.controls
-					| Username: 
-					input(style='width:350px;', id="name")
-					br
-					input(style='width:350px;', id="text-box")
-					input(type='button', value='Send', id="send-button")
+					#name-container
+						| Username: 
+						input(style='width:350px;', id="name")
+					#text-container
+						input(style='width:350px;', id="text-box")
+						input(type='button', value='Send', id="send-button")

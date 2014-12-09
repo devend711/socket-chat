@@ -10,7 +10,7 @@ window.onload = function() {
     var content = $('#chat-message-container');
     var name = $('#name');
  
-    socket.on('message', function (data) { // bind a function, expect an object named data with a property 'message'
+    socket.on('message', function (data) { // bind a function, expect an object named data
         if(data.message) {
             console.log('socket received message: ' + data.message)
             console.log('there are now ' + messages.length + ' messages')
