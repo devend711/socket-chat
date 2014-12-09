@@ -15,19 +15,27 @@ window.onload = function() {
             console.log('there are now ' + messages.length + ' messages')
             messages.push(data.message);
             content.append(data.username + ': ' + data.message + '<br/>');
+            $("#content").scrollTop($("#content")[0].scrollHeight);
         } else {
             console.log('error!: ', data);
         }
     });
  
-    sendButton.click(function() {
+    sendButton.click = sendMessage = (function() {
         var text = field.val();
         var username = name.val();
         if(username == "") {
             alert("Pick a username!");
+            name.focus();
         } else {
+            field.val('');
             socket.emit('send', { message: text, username: username }); // fire a 'send' event to the socket
         }
     });
- 
+
+    field.keyup(function(e) {
+        if(e.keyCode == 13) {
+            sendMessage();
+        }
+    });
 }

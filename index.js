@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public')); // we put back-end stuff in 'pub
 var io = require('socket.io').listen(app.listen(port)); // pass express server to Socket.io
 io.sockets.on('connection', function (socket) {
     // socket is a junction b/w server and client
-    socket.emit('message', { message: 'welcome to the chat', username: 'chat-bot' }); // send an initial 'message' event to the socket
+    socket.emit('message', { message: 'Welcome!', username: 'chat-bot' }); // send an initial 'message' event to the socket
     socket.on('send', function (data) { // add an event listener to the 'send' function
         io.sockets.emit('message', data);
     });
