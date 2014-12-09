@@ -6,7 +6,7 @@ window.onload = function() {
     var socket = io.connect('http://localhost:3700');
     var field = $('#text-box');
     var sendButton = $('input#send-button');
-    var content = $('#content');
+    var content = $('#chat-message-container');
     var name = $('#name');
  
     socket.on('message', function (data) { // bind a function, expect an object named data with a property 'message'
@@ -15,22 +15,27 @@ window.onload = function() {
             console.log('there are now ' + messages.length + ' messages')
             messages.push(data.message);
             content.append(data.username + ': ' + data.message + '<br/>');
-            $("#content").scrollTop($("#content")[0].scrollHeight);
+            $("#content").scrollTop(content[0].scrollHeight);
         } else {
             console.log('error!: ', data);
         }
     });
  
-    sendButton.click = sendMessage = (function() {
+    sendMessage = function() {
         var text = field.val();
         var username = name.val();
         if(username == "") {
             alert("Pick a username!");
             name.focus();
         } else {
-            field.val('');
             socket.emit('send', { message: text, username: username }); // fire a 'send' event to the socket
+            field.val('');
         }
+    };
+
+    sendButton.click(function() {
+        console.log('clicked!')
+        sendMessage();
     });
 
     field.keyup(function(e) {

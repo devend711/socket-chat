@@ -1,0 +1,12 @@
+.jumbotron {
+	background-color: transparent;
+	text-align: center;
+}
+
+#chat-message-container {
+	height: 10em;
+	border: 1px solid #ccc;
+	margin-bottom: 1em;
+	padding: 0.5em;
+	text-align: left;
+}

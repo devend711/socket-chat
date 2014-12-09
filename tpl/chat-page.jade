@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		title= "Real time web chat"
+		script(src='/chat.js')
+		script(src='/socket.io/socket.io.js')
+		script(src="http://code.jquery.com/jquery-1.6.2.min.js")
+		link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+		link(href='/custom.css', rel='stylesheet')
+	body
+		div.container
+			div.jumbotron
+				#chat-message-container()
+				.controls
+					| Username: 
+					input(style='width:350px;', id="name")
+					br
+					input(style='width:350px;', id="text-box")
+					input(type='button', value='Send', id="send-button")
