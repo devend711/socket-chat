@@ -1,0 +1,11 @@
+{
+    "name": "SocketChat",
+    "version": "0.0.0",
+    "description": "A cool chat room",
+    "dependencies": {
+        "socket.io": "latest",
+        "express": "latest",
+        "jade": "latest"
+    },
+    "author": "Deven"
+}
