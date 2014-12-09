@@ -8,5 +8,8 @@ html
 	body
 		#content(style='width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;')
 		.controls
-			input.field(style='width:350px;' id="text-box")
-			input.send(type='button', value='send', id="send-button")
+			| Username: 
+			input(style='width:350px;', id="name")
+			br
+			input(style='width:350px;', id="text-box")
+			input(type='button', value='send', id="send-button")
