@@ -17,11 +17,30 @@ input[type="button"]:hover {
 	text-align: center;
 }
 
-.jumbotron h1#title {
-	border-bottom: 1px solid #9A49EB;
-	padding: 0.5em;
+.header {
+	top: 0;
 	display: inline-block;
-	clear: both;
+	color: white;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #9A49EB;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+}
+
+.header h1#title {
+	color: #9A49EB;
+}
+
+.footer h3#client-count {
+	display: inline-block;
+	margin-bottom: 1em;
 }
 
 #chat-message-container {
@@ -32,6 +51,10 @@ input[type="button"]:hover {
 	text-align: left;
 	overflow: hidden;
 	overflow-y: scroll;
+}
+
+.controls input#name, .controls input#text-box {
+	width: 300px;
 }
 
 .controls > div {

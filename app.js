@@ -6,7 +6,8 @@ app.set('view engine', "jade");
 app.engine('jade', require('jade').__express);
 app.use(express.static(__dirname + '/public')); // we put front-end stuff in 'public' - tell express about it
 
-var users = {}; // keep track of users by id
+var users = {}; // keep track of users
+var userId = 0;  // each user is assigned an incrementing ID
 
 app.get("/", function(req, res){
     res.render("chat-page");
@@ -17,7 +18,7 @@ var io = require('socket.io').listen(app.listen(port)); // pass express server t
 io.sockets.on('connection', function (socket) {
     // a socket is a junction b/w server and a client
     console.log('New socket formed: ' + socket.id)
-  	users[socket.id] = numClients() + 1; // on connection, associate this id with a client #
+  	users[socket.id] = firstUnusedClientKey(); // on connection, associate this id with a client #
     io.sockets.emit('message', {username: 'chat-bot', message: 'Welcome client #' + users[socket.id] + '!'}); // send a 'message' event to all sockets
     updateClientCounts(); // send a 'clientCountUpdate' event to all sockets
 
@@ -34,6 +35,17 @@ io.sockets.on('connection', function (socket) {
 });
 
 console.log("Listening on port " + port);
+
+firstUnusedClientKey = function() {
+	key = 0;
+	keys = Object.keys(users);
+	if (keys) {
+		while(key in keys) {
+			key++;
+		}
+	}
+	return key;
+}
 
 numClients = function() {
 	return Object.keys(users).length;

@@ -8,14 +8,16 @@ html
 		link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
 		link(href='/custom.css', rel='stylesheet')
 	body
+		.header
+			| SocketChat!
 		.container
 			.jumbotron
-				h1#title SocketChat!
-				h3#client-count 0 users Here
 				#chat-message-container()
 				.controls
 					#name-container
-						input(style='width:350px;', id="name", placeholder="Username")
+						input(id="name", placeholder="Username")
 					#text-container
-						input(style='width:350px;', id="text-box", placeholder="Message")
+						input(id="text-box", placeholder="Message")
 						input(type='button', value=' >> ', id="send-button")
+		.footer
+			h3#client-count 0 users Here
