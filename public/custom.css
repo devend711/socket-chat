@@ -18,7 +18,10 @@ input[type="button"]:hover {
 }
 
 .jumbotron h1#title {
-	color: #9A49EB;
+	border-bottom: 1px solid #9A49EB;
+	padding: 0.5em;
+	display: inline-block;
+	clear: both;
 }
 
 #chat-message-container {
@@ -28,6 +31,7 @@ input[type="button"]:hover {
 	padding: 0.5em;
 	text-align: left;
 	overflow: hidden;
+	overflow-y: scroll;
 }
 
 .controls > div {

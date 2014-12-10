@@ -2,29 +2,34 @@ window.onload = function() {
 
     console.log('loaded!');
  
-    var messages = [];
     var color_codes = {}; // a dictionary of string -> color associations
     var socket = io.connect('http://localhost:3700');
+    var messages = [];
     var field = $('#text-box');
     var sendButton = $('input#send-button');
     var content = $('#chat-message-container');
     var name = $('#name');
+    var count = $('#client-count');
+
+    // get last 5 messages
  
-    socket.on('message', function (data) { // bind a function, expect an object named data
+    socket.on('message', function (data) { // when the socket receives a 'message' function, expect an object named data
         if(data.message) {
             console.log('socket received message: ' + data.message)
             console.log('there are now ' + messages.length + ' messages')
             messages.push(data.message);
             content.append(
                 '<div class="message row">'
-                + '<div class="col-md-10 content">'
+                + '<div class="col-md-8 content">'
                     + '<span class="username" style="color: ' + stringToHex(data.username) + '">'
                     + data.username 
                     + ': </span>'
                     + data.message 
                 + '</div>'
-                + '<div class=col-md-2>'
-                    + '<span class="timestamp">' + currentTimeString()
+                + '<div class=col-md-4>'
+                    + '<span class="timestamp">' 
+                    + (data.username=='chat-bot' ? 'chat-bot' : ('client #' + data.clientId)) // only add a client id if it wasn't from chatbot
+                    + ' ' + currentTimeString()
                 + '</div>'
                 + '</div>'
             );
@@ -32,6 +37,15 @@ window.onload = function() {
         } else {
             console.log('error!: ', data);
         }
+    });
+
+    socket.on('clientCountUpdate', function(num) {
+        if (num > 1){
+            count.text(num + ' users here');
+        } else {
+            count.text("you're the only one here :(");
+        }
+        
     });
 
 
@@ -55,7 +69,7 @@ window.onload = function() {
             alert("Pick a username!");
             name.focus();
         } else {
-            socket.emit('send', { message: text, username: username }); // fire a 'send' event to the socket
+            socket.emit('send', { message: text, username: username }); // fire a 'send' event back to the socket
             field.val('');
         }
     };
